@@ -27,6 +27,11 @@
       # Enable both GuC and HuC firmware loading (for processors before Gen 11)
       # https://wiki.archlinux.org/title/Intel_graphics#Enable_GuC_/
       "i915.enable_guc=2"
+
+      # Disable auto suspend of bluetooth devices:
+      # https://github.com/linrunner/TLP/issues/545#issuecomment-833576226
+      "btusb.enable_autosuspend=0"
+      # But it seems not working...
     ];
 
     blacklistedKernelModules = [
@@ -87,6 +92,11 @@
 
       CPU_SCALING_GOVERNOR_ON_AC = "powersave";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      # Bluetooth adopter gets powered off after disconnecting bluetooth mouse.
+      # Both of these lines do not work.
+      # USB_EXCLUDE_BTUSB = true;
+      # USB_DENYLIST = "0489:e0a2"; # Bus 001 Device 003: ID 0489:e0a2 Foxconn / Hon Hai
     };
 
     dropbox.enable = true;
